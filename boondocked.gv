@@ -1,0 +1,93 @@
+graph g {
+  graph [
+  rankdir = "LR"
+  label = "Boondocked"
+  ];
+  "MPPT" [
+  label = "<f0> MPPT|<f1> batt -|<f2> batt +|<f3> pv -|<f4> pv +|<f5> load -|<f6> load +"
+  shape = "record"
+  ];
+  "DISTRIBUTION BLOCK" [
+  label = "<f0> DISTRIBUTION BLOCK|<f1> -|<f2> +"
+  shape = "record"
+  ];
+  /* "LAPTOP PS" [
+  label = "<f0> LAPTOP PS|<f1> vdc -|<f2> vdc +|<f3> vac -|<f4> vac +"
+  shape = "record"
+  ]; */
+  "HOUSE BATT" [
+  label = "<f0> HOUSE BATT|<f1> -|<f2> +"
+  shape = "record"
+  ];
+  "INVERTER" [
+  label = "<f0> INVERTER|<f1> vdc -|<f2> vdc +|<f3> vac -|<f4> vac +"
+  shape = "record"
+  ];
+  "ALTERNATOR" [
+  label = "<f0> ALTERNATOR|<f1> -|<f2> +"
+  shape = "record"
+  ];
+  "ENGINE BATT" [
+  label = "<f0> ENGINE BATT|<f1> -|<f2> +"
+  shape = "record"
+  ];
+  "SWITCH" [
+  label = "SWITCH"
+  shape = "circle"
+  ];
+  "SOLAR PANEL" [
+  label = "<f0> SOLAR PANEL|<f1> -|<f2> +"
+  shape = "record"
+  ];
+  "MPPT":f5 -- "DISTRIBUTION BLOCK":f1 [
+  id = 0
+  ];
+  "MPPT":f6 -- "DISTRIBUTION BLOCK":f2 [
+  id = 1
+  color = "red"
+  ];
+  "MPPT":f3 -- "SOLAR PANEL":f1 [
+  id = 2
+  ];
+  "MPPT":f4 -- "SOLAR PANEL":f2 [
+  id = 3
+  color = "red"
+  ];
+  "INVERTER":f1 -- "SWITCH" [
+  id = 4
+  ];
+  "INVERTER":f2 -- "SWITCH" [
+  id = 5
+  color = "red"
+  ];
+  "ALTERNATOR":f1 -- "ENGINE BATT":f1 [
+  id = 8
+  ];
+  "ALTERNATOR":f2 -- "ENGINE BATT":f2 [
+  id = 9
+  color = "red"
+  ];
+  "HOUSE BATT":f1 -- "SWITCH" [
+  id = 10
+  ];
+  "HOUSE BATT":f2 -- "SWITCH" [
+  id = 11
+  color = "red"
+  ];
+  "ENGINE BATT":f1 -- "SWITCH" [
+  id = 12
+  style = "dashed"
+  ];
+  "ENGINE BATT":f2 -- "SWITCH" [
+  id = 13
+  style = "dashed"
+  color = "red"
+  ];
+  "MPPT":f1 -- "HOUSE BATT":f1 [
+  id = 14
+  ];
+  "MPPT":f2 -- "HOUSE BATT":f2 [
+  id = 15
+  color = "red"
+  ];
+}
