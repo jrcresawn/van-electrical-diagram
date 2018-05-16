@@ -1,4 +1,4 @@
-png: boondocked.gv driving.gv shore-powered.gv converter.gv
+png: boondocked.gv driving.gv shore-powered.gv
 	dot -Tpng -O $?
 
 .PHONY: clean

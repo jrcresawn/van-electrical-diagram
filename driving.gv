@@ -1,10 +1,21 @@
 graph g {
   graph [
   rankdir = "LR"
-  label = "Driving"
+  /* label = "Driving" */
+  ];
+  "G" [
+  shape = "invtriangle"
   ];
   "MPPT" [
-  label = "<f0> MPPT|<f1> batt +|<f2> batt -|<f3> pv -|<f4> pv +|<f5> load -|<f6> load +"
+  label = "<f0> MPPT|<f1> batt -|<f2> batt +|<f3> pv -|<f4> pv +|<f5> load -|<f6> load +"
+  shape = "record"
+  ];
+  "DC-DC CONVERTER" [
+  label = "<f0> DC-DC CONVERTER|<f1> in -|<f2> in +|<f3> out -|<f4> out +"
+  shape = "record"
+  ];
+  "SHORE POWER" [
+  label = "<f0> SHORE POWER|<f1> -|<f2> +"
   shape = "record"
   ];
   "DISTRIBUTION BLOCK" [
@@ -31,10 +42,14 @@ graph g {
   label = "<f0> ENGINE BATT|<f1> -|<f2> +"
   shape = "record"
   ];
-  "SWITCH" [
+  "SOLAR PANEL" [
+  label = "<f0> SOLAR PANEL|<f1> -|<f2> +"
+  shape = "record"
+  ];
+  /* "SWITCH" [
   label = "SWITCH"
   shape = "circle"
-  ];
+  ]; */
   "MPPT":f5 -- "DISTRIBUTION BLOCK":f1 [
   id = 0
   ];
@@ -44,33 +59,42 @@ graph g {
   ];
   "MPPT":f3 -- "LAPTOP PS":f1 [
   id = 2
+  style = "dashed"
   ];
   "MPPT":f4 -- "LAPTOP PS":f2 [
   id = 3
+  style = "dashed"
   color = "red"
   ];
-  "INVERTER":f1 -- "SWITCH" [
+  "MPPT":f3 -- "DC-DC CONVERTER":f3 [
+  id = 2
+  ];
+  "MPPT":f4 -- "DC-DC CONVERTER":f4 [
+  id = 3
+  color = "red"
+  ];
+  /* "INVERTER":f1 -- "SWITCH" [
   id = 4
   ];
   "INVERTER":f2 -- "SWITCH" [
   id = 5
   color = "red"
-  ];
-  "INVERTER":f3 -- "LAPTOP PS":f3 [
+  ]; */
+  "INVERTER":f1 -- "HOUSE BATT":f1 [
   id = 6
   ];
-  "INVERTER":f4 -- "LAPTOP PS":f4 [
+  "INVERTER":f2 -- "HOUSE BATT":f2 [
   id = 7
   color = "red"
   ];
-  "ALTERNATOR":f1 -- "ENGINE BATT":f1 [
+  "ALTERNATOR":f1 -- "G" [
   id = 8
   ];
   "ALTERNATOR":f2 -- "ENGINE BATT":f2 [
   id = 9
   color = "red"
   ];
-  "HOUSE BATT":f1 -- "SWITCH" [
+  /* "HOUSE BATT":f1 -- "SWITCH" [
   id = 10
   style = "dashed"
   ];
@@ -78,11 +102,9 @@ graph g {
   id = 11
   style = "dashed"
   color = "red"
-  ];
-  "ENGINE BATT":f1 -- "SWITCH" [
-  id = 12
-  ];
-  "ENGINE BATT":f2 -- "SWITCH" [
+  ]; */
+  "G" -- "DC-DC CONVERTER":f1 [];
+  "ENGINE BATT":f2 -- "DC-DC CONVERTER":f2 [
   id = 13
   color = "red"
   ];
@@ -91,6 +113,23 @@ graph g {
   ];
   "MPPT":f2 -- "HOUSE BATT":f2 [
   id = 15
+  color = "red"
+  ];
+  "MPPT":f3 -- "SOLAR PANEL":f1 [
+  id = 2
+  style = "dashed"
+  ];
+  "MPPT":f4 -- "SOLAR PANEL":f2 [
+  id = 3
+  style = "dashed"
+  color = "red"
+  ];
+  "ENGINE BATT":f1 -- "G" [];
+  "SHORE POWER":f1 -- "LAPTOP PS":f3 [
+  style = "dashed"
+  ];
+  "SHORE POWER":f2 -- "LAPTOP PS":f4 [
+  style = "dashed"
   color = "red"
   ];
 }
