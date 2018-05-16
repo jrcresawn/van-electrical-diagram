@@ -1,7 +1,10 @@
 graph g {
   graph [
+  size = "8.5,11";
+  ratio = "fill";
   rankdir = "LR"
-  /* label = "Driving" */
+	fontsize = 36,
+  label = "\nDriving"
   ];
   "G" [
   shape = "invtriangle"
